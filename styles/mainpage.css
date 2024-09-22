@@ -19,8 +19,9 @@ body {
   background-image: url("/Pictures/DSC_0263.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: left;
   background-attachment: fixed;
+  height: 100vh;
 }
 
 .nav-container {
@@ -29,36 +30,58 @@ body {
   align-items: center;
   justify-content: space-between;
   font-family: "Antipasto";
+  margin-right: 4px;
 }
 
-.right-section {
+.nav-link {
+  font-family: 'Antipasto';
+  color: white;
+  text-decoration: None;
+  margin-right: 30px;
+  letter-spacing: 1.3px;
+}
+
+.menu-button {
+  background-color: black;
+  border: None;
+  cursor: pointer;
+  display: None;
+}
+
+.menu-icon {
+  color: white;
+  transform: scale(3);
+  padding-left: 10px;
+}
+
+.nav-list {
+  text-decoration: None;
+  list-style: None;
   display: flex;
-  flex-direction: row;
+  justify-content: flex-end;
   align-items: center;
-  margin-bottom: 12px;
+}
+
+.menu-icon {
+  color: white;
+  margin-right: 20px;
+}
+
+.logo-container {
+  text-align: center;
+  margin-top: 10px;
 }
 
 .logo {
   text-decoration: None;
   color: white;
   font-size: 30px;
-  margin-right: 20px;
-  letter-spacing: 1.3px
+  margin-left: 15px;
+  letter-spacing: 1.3px;
 }
 
 .bracket {
   font-family: "AntipastoBold";
-}
-
-.nav-link {
-  text-decoration: None;
-  color: white;
-  margin-right: 20px;
-  letter-spacing: 1.3px;
-}
-
-.contact-container {
-  margin-right: 8px;
 }
 
 .contact-button {
@@ -81,11 +104,6 @@ body {
   transition: 0.2s;
 }
 
-.contact-text {
-  justify-content: center;
-  align-items: center;
-}
-
 .search {
   --padding: 20px;
 
@@ -97,6 +115,8 @@ body {
   border-radius: 10px;
   background: #f6f6f6;
   opacity: 0.25;
+  margin: auto;
+  margin-top: 250px;
   box-shadow: inset 6px 6px 10px 0 rgba(0, 0, 0, 0.3),
     inset -6px -6px 10px 0 rgba(246, 246, 246, 0.5);
 }
@@ -133,9 +153,9 @@ input[type="search"]::-webkit-search-results-decoration {
 .social-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-top: 280px;
-  margin-left: 955px;
+  position: absolute;
+  bottom: -10px;
+  right: 10px;
   z-index: 11;
 }
 
@@ -192,6 +212,24 @@ input[type="search"]::-webkit-search-results-decoration {
   background: linear-gradient(#249ee4, #034fa0);
 }
 
+@media (max-width: 940px) {
+  .nav-link {
+    display: None;
+  }
+
+  .menu-button {
+    display: block;
+  }
+
+  .search {
+    display: None;
+  }
+
+  .logo-container {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
 
 
 /*

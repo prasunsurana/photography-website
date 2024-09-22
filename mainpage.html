@@ -14,36 +14,33 @@
   <link rel="stylesheet" href="/styles/mainpage.css">
 </head>
 
-<body>
+<body style="margin:0;">
   <nav class="nav-bar">
     <div class="nav-container">
       <div class="logo-container">
         <a class="logo" href="/mainpage.html">
           <span class="bracket" style="color:#1f9a76">[ </span>prasun surana <br>
           <strong>photography </strong> <span class="bracket" style="color:#1f9a76">]
-          </span></a>
+          </span>
+        </a>
       </div>
-      <form>
-        <div class="search" name="search-bar">
-          <input class="search-input" type="search" id="search-input" placeholder="search" autocomplete="off">
-          <ion-icon class="search-icon" name="search-outline"></ion-icon>
-        </div>
-      </form>
-      <div class="right-section">
-        <div class="about-container">
-          <a class="nav-link" href="mainpage.html">about me</a>
-        </div>
-        <div class="gallery-container">
-          <a class="nav-link" href="mainpage.html">gallery</a>
-        </div>
-        <div class="contact-container">
-          <button class="contact-button">
-            <a class="nav-link contact-text" href="mainpage.html">contact</a>
-          </button>
-        </div>
-      </div>
+      <nav>
+        <ul class="nav-list">
+          <li><a class="nav-link" href="/mainpage.html">about</a></li>
+          <li><a class="nav-link" href="/mainpage.html">gallery</a></li>
+          <li><a class="nav-link contact-button" href="/mainpage.html">contact</a></li>
+          <button class="menu-button"><ion-icon class="menu-icon" name="menu-outline"></ion-icon></button>
+        </ul>
+      </nav>
     </div>
   </nav>
+
+  <form>
+    <div class="search" name="search-bar">
+      <input class="search-input" type="search" id="search-input" placeholder="search" autocomplete="off">
+      <ion-icon class="search-icon" name="search-outline"></ion-icon>
+    </div>
+  </form>
 
   <div class="social-container">
     <a class="social-links" href="https://www.instagram.com/prasunsurana/" target="_blank">
@@ -67,7 +64,6 @@
       </button>
     </a>
   </div>
-
   <script type="module" src="/utils/inputdetector.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
