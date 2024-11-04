@@ -1,0 +1,43 @@
+.menu-button {
+  background-color: black;
+  border: None;
+  cursor: pointer;
+  display: None;
+}
+
+.menu-icon {
+  color: white;
+  transform: scale(3);
+  padding-left: 10px;
+}
+
+.social-expander-container {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  visibility: hidden;
+}
+
+@media (max-width: 570px),
+(max-height: 400px) {
+  .nav-link {
+    display: None;
+  }
+
+  .menu-button {
+    display: block;
+  }
+
+  .logo-container {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .social-container {
+    visibility: hidden;
+  }
+
+  .social-expander-container {
+    visibility: visible;
+  }
+}

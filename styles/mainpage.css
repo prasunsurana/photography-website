@@ -42,28 +42,3 @@ input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration {
   display: none;
 }
-
-
-@media (max-width: 570px),
-(max-height: 400px) {
-  .nav-link {
-    display: None;
-  }
-
-  .menu-button {
-    display: block;
-  }
-
-  .logo-container {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .social-container {
-    visibility: hidden;
-  }
-
-  .social-expander-container {
-    visibility: visible;
-  }
-}

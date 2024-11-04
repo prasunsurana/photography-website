@@ -35,30 +35,12 @@ body {
   letter-spacing: 1.3px;
 }
 
-.menu-button {
-  background-color: black;
-  border: None;
-  cursor: pointer;
-  display: None;
-}
-
-.menu-icon {
-  color: white;
-  transform: scale(3);
-  padding-left: 10px;
-}
-
 .nav-list {
   text-decoration: None;
   list-style: None;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-}
-
-.menu-icon {
-  color: white;
-  margin-right: 20px;
 }
 
 .logo-container {

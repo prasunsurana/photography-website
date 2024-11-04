@@ -59,10 +59,3 @@
 .mail-button:hover {
   background: linear-gradient(#249ee4, #034fa0);
 }
-
-.social-expander-container {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  visibility: hidden;
-}
