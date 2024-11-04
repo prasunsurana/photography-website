@@ -1,0 +1,99 @@
+@font-face {
+  font-family: Antipasto;
+  src: url('/fonts/antipasto/AntipastoPro-Thin_trial.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: AntipastoBold;
+  src: url('/fonts/antipasto/AntipastoPro-Medium_trial.ttf');
+}
+
+body {
+  background-image: url("/Pictures/DSC_0263.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: left;
+  background-attachment: fixed;
+  min-width: 350px;
+  min-height: 200px;
+}
+
+.nav-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Antipasto";
+  margin-right: 4px;
+}
+
+.nav-link {
+  font-family: 'Antipasto';
+  color: white;
+  text-decoration: None;
+  margin-right: 30px;
+  letter-spacing: 1.3px;
+}
+
+.menu-button {
+  background-color: black;
+  border: None;
+  cursor: pointer;
+  display: None;
+}
+
+.menu-icon {
+  color: white;
+  transform: scale(3);
+  padding-left: 10px;
+}
+
+.nav-list {
+  text-decoration: None;
+  list-style: None;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.menu-icon {
+  color: white;
+  margin-right: 20px;
+}
+
+.logo-container {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.logo {
+  text-decoration: None;
+  color: white;
+  font-size: 30px;
+  margin-left: 15px;
+  letter-spacing: 1.3px;
+}
+
+.bracket {
+  font-family: "AntipastoBold";
+}
+
+.contact-button {
+  background-image: linear-gradient(#1f9a76, #0f5441);
+  width: 70px;
+  font-family: "Antipasto";
+  font-size: 16px;
+  border: None;
+  border-radius: 5px;
+  padding: 9px;
+  margin-right: 4px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.contact-button:hover {
+  filter: brightness(120%);
+  transform: scale(1.1) perspective(1px);
+  -webkit-font-smoothing: subpixel-antialiased;
+  transition: 0.2s;
+}

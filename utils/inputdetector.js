@@ -49,7 +49,27 @@ export function searchBarOffListener() {
   });
 };
 
+export function toggleSocialExpander() {
+
+  const expander = document.querySelector('.social-expander-container');
+  const socialContainer = document.querySelector('.social-container');
+  const logos = document.getElementsByClassName('social-logo');
+
+  expander.addEventListener('click', () => {
+    expander.style.opacity = 0.4;
+    socialContainer.style.transform = "rotate(-90deg)"
+
+    for (let idx = 0; idx < logos.length; idx++) {
+      logos[idx].style.transform = "rotate(90deg)";
+      logos[idx].style.size = "20px";
+    }
+
+    socialContainer.style.visibility = "visible";
+  });
+};
+
 searchBarListener();
 searchBarMouseoverListener();
 searchBarMouseoutListener();
 searchBarOffListener();
+toggleSocialExpander();
