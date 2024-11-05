@@ -1,9 +1,25 @@
+@font-face {
+  font-family: JetBrainsMono;
+  src: url('/fonts/jetbrainsmono/JetBrainsMono-Medium.ttf') format('truetype');
+}
+
 .info-div {
   z-index: 100;
   background-color: white;
+  position: relative;
+  top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  border-radius: 10px;
+  opacity: 0.6;
+  text-align: justify;
 }
 
 .about-info {
   color: black;
-  font-family: ;
+  font-family: JetBrainsMono;
+  margin: 20px;
+  padding: 10px;
+
 }
