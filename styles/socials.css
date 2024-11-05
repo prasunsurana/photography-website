@@ -19,7 +19,8 @@
   padding-right: 3px;
 }
 
-.social {
+.social,
+.social-row {
   background-color: white;
   height: 45px;
   width: 45px;
@@ -58,4 +59,23 @@
 
 .mail-button:hover {
   background: linear-gradient(#249ee4, #034fa0);
+}
+
+.expander:hover {
+  color: black;
+}
+
+.social-container-row {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  bottom: 20px;
+  right: 90px;
+  z-index: 11;
+  visibility: hidden;
+}
+
+.social-row {
+  margin-left: 30px;
+  display: None;
 }

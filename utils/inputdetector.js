@@ -49,22 +49,30 @@ export function searchBarOffListener() {
   });
 };
 
-export function toggleSocialExpander() {
+export function socialExpander() {
 
   const expander = document.querySelector('.social-expander-container');
-  const socialContainer = document.querySelector('.social-container');
-  const logos = document.getElementsByClassName('social-logo');
+  const socialContainer = document.querySelector('.social-container-row');
+  const buttonArray = document.getElementsByClassName('social-row');
 
   expander.addEventListener('click', () => {
-    expander.style.opacity = 0.4;
-    socialContainer.style.transform = "rotate(-90deg)"
 
-    for (let idx = 0; idx < logos.length; idx++) {
-      logos[idx].style.transform = "rotate(90deg)";
-      logos[idx].style.size = "20px";
-    }
+    if (socialContainer.style.visibility === 'hidden') {
+      expander.style.opacity = 0.4;
+      socialContainer.style.visibility = "visible";
 
-    socialContainer.style.visibility = "visible";
+      for (let i = 0; i < buttonArray.length; i++) {
+        buttonArray[i].style.display = 'block';
+      };
+
+    } else {
+      socialContainer.style.visibility = "hidden";
+
+      for (let i = 0; i < buttonArray.length; i++) {
+        buttonArray[i].style.display = 'None';
+      };
+    };
+
   });
 };
 
@@ -72,4 +80,4 @@ searchBarListener();
 searchBarMouseoverListener();
 searchBarMouseoutListener();
 searchBarOffListener();
-toggleSocialExpander();
+socialExpander();

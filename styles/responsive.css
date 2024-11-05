@@ -2,13 +2,13 @@
   background-color: black;
   border: None;
   cursor: pointer;
+  margin-right: 20px;
   display: None;
 }
 
 .menu-icon {
   color: white;
   transform: scale(3);
-  padding-left: 10px;
 }
 
 .social-expander-container {
@@ -16,6 +16,7 @@
   bottom: 20px;
   right: 20px;
   visibility: hidden;
+  z-index: 50;
 }
 
 @media (max-width: 570px),
@@ -28,13 +29,13 @@
     display: block;
   }
 
+  .social-container {
+    visibility: hidden;
+  }
+
   .logo-container {
     margin-left: auto;
     margin-right: auto;
-  }
-
-  .social-container {
-    visibility: hidden;
   }
 
   .social-expander-container {

@@ -8,14 +8,14 @@
   src: url('/fonts/antipasto/AntipastoPro-Medium_trial.ttf');
 }
 
+html,
 body {
   background-image: url("/Pictures/DSC_0263.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: left;
   background-attachment: fixed;
-  min-width: 350px;
-  min-height: 200px;
+  min-width: 100%;
 }
 
 .nav-container {
