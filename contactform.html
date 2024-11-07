@@ -4,17 +4,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prasun Surana Photography</title>
-  <!--
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap" rel="stylesheet">
--->
-
-  <link rel="stylesheet" href="/styles/mainpage.css">
+  <title>Prasun Surana Photography | About Me</title>
+  <link rel="stylesheet" href="/styles/about.css">
   <link rel="stylesheet" href="/styles/responsive.css">
   <link rel="stylesheet" href="/styles/header.css">
   <link rel="stylesheet" href="/styles/socials.css">
+  <link rel="stylesheet" href="/styles/contactform.css">
 </head>
 
 <body style="margin:0;">
@@ -31,17 +26,23 @@
         <ul class="nav-list">
           <li><a class="nav-link" href="/about.html">about</a></li>
           <li><a class="nav-link" href="/mainpage.html">gallery</a></li>
-          <li><a class="nav-link contact-button" href="/contactform.html">contact</a></li>
+          <li><a class="nav-link contact-button" href="/mainpage.html">contact</a></li>
           <button class="menu-button"><ion-icon class="menu-icon" name="menu-outline"></ion-icon></button>
         </ul>
       </nav>
     </div>
   </nav>
 
-  <div class="search" name="search-bar">
-    <input class="search-input" type="search" id="search-input" placeholder="search" autocomplete="off">
-    <ion-icon class="search-icon" name="search-outline"></ion-icon>
-  </div>
+
+  <form action="https://formspree.io/f/xanyodnv" method="POST">
+    <div class="form-div">
+      <input type="text" name="first" placeholder="first name" autocomplete="off" required>
+      <input type="text" name="last" placeholder="last name" autocomplete="off" required>
+      <input type="email" name="email" placeholder="email address" autocomplete="off" required>
+      <textarea rows="5" cols="60" name="message" placeholder="enter text" autocomplete="off" required></textarea>
+      <button class="submit" type="submit">send message</button>
+    </div>
+  </form>
 
   <div class="social-container">
     <a class="social-links" href="https://www.instagram.com/prasunsurana/" target="_blank">
