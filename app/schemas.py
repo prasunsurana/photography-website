@@ -4,7 +4,7 @@ from datetime import datetime
 from typing import Optional
 
 # Pydantic schema for uploading image metadata to Postgres database
-class ImageBase(BaseModel):
+class MetadataBase(BaseModel):
   datetime_original: str
   model: str
   lens_model: str
@@ -13,12 +13,18 @@ class ImageBase(BaseModel):
   aperture_value: str
   shutter_speed_value: str
   photographic_sensitivity: str
-  s3_url: str
 
   class Config:
     extra = "ignore" # Ignore any extra fields not defined in the model
+    orm_mode = "config"
 
+class ImageCreate(BaseModel):
+   country: str
+   location: str
+   s3_url: str
+   metadata: MetadataBase
 
+# Pydantic schema for defining database environment variables class
 class Settings(BaseSettings):
   database_hostname: str
   database_port: str

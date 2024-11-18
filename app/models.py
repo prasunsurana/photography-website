@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql.sqltypes import TIMESTAMP
 from sqlalchemy.sql.expression import text
-from .schemas import Base
+from .database import Base
 
 class Image(Base):
     __tablename__ = "images"
@@ -26,3 +26,15 @@ class Metadata(Base):
     aperture_value = Column(String, nullable=False)
     shutter_speed = Column(String, nullable=False)
     ISO = Column(Integer, nullable=False)
+
+
+class User(Base):
+    __tablename__ = 'users'
+
+    id = Column(Integer, primary_key=True, nullable=False)
+    username = Column(String, nullable=False)
+    password = Column(String) # This will be a hashed password, so if database is breached, security is not
+                              # compromised
+
+class Subscribers(User):
+    __tablename__ = 'subscribers'
