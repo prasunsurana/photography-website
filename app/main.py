@@ -1,7 +1,8 @@
-from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from . import models
-from .database import engine
+from fastapi import FastAPI
+from app.routers import public
+from app.database import engine
+from app import models
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -17,3 +18,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"]
 )
+
+# app.include_router(admin)
+app.include_router(public.router)

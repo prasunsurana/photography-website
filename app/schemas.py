@@ -1,22 +1,20 @@
 from pydantic import BaseModel, EmailStr
 from pydantic_settings import BaseSettings
-from datetime import datetime
-from typing import Optional
 
 # Pydantic schema for uploading image metadata to Postgres database
 class MetadataBase(BaseModel):
-  datetime_original: str
-  model: str
-  lens_model: str
-  f_number: str
-  focal_length: str
-  aperture_value: str
-  shutter_speed_value: str
-  photographic_sensitivity: str
+  DateTimeOriginal: str
+  Model: str
+  LensModel: str
+  FNumber: float
+  FocalLength: float
+  ApertureValue: float
+  ShutterSpeedValue: float
+  ISOSpeedRatings: int
 
   class Config:
     extra = "ignore" # Ignore any extra fields not defined in the model
-    orm_mode = "config"
+    from_attributes = True
 
 class ImageCreate(BaseModel):
    country: str

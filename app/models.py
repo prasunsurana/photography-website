@@ -1,5 +1,4 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
-from sqlalchemy.orm import relationship
 from sqlalchemy.sql.sqltypes import TIMESTAMP
 from sqlalchemy.sql.expression import text
 from .database import Base
@@ -18,14 +17,14 @@ class Metadata(Base):
     __tablename__ = "metadata"
 
     id = Column(Integer, primary_key=True, nullable=False)
-    date = Column(TIMESTAMP(timezone=True), nullable=False)
-    model = Column(String, nullable=False)
-    lens_model = Column(String, nullable=False)
-    f_number = Column(String, nullable=False)
-    focal_length = Column(String, nullable=False)
-    aperture_value = Column(String, nullable=False)
-    shutter_speed = Column(String, nullable=False)
-    ISO = Column(Integer, nullable=False)
+    DateTimeOriginal = Column(String, nullable=False)
+    Model = Column(String, nullable=False)
+    LensModel = Column(String, nullable=False)
+    FNumber = Column(String, nullable=False)
+    FocalLength = Column(String, nullable=False)
+    ApertureValue = Column(String, nullable=False)
+    ShutterSpeedValue = Column(String, nullable=False)
+    ISOSpeedRatings = Column(Integer, nullable=False)
 
 
 class User(Base):
@@ -35,6 +34,3 @@ class User(Base):
     username = Column(String, nullable=False)
     password = Column(String) # This will be a hashed password, so if database is breached, security is not
                               # compromised
-
-class Subscribers(User):
-    __tablename__ = 'subscribers'
