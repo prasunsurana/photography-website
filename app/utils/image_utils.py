@@ -1,7 +1,5 @@
 from PIL import Image, ExifTags
-from PIL.ExifTags import TAGS
 from fastapi import UploadFile
-from datetime import datetime
 from app import schemas
 import tempfile
 
@@ -14,7 +12,7 @@ def extractEXIF(file: UploadFile) -> schemas.MetadataBase:
 
   image = Image.open(tempfile_path)
   exif_data = image._getexif()
-
+  
   if not exif_data:
     raise ValueError("No EXIF data found in the image")
   

@@ -1,20 +1,32 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.sql.sqltypes import TIMESTAMP
 from sqlalchemy.sql.expression import text
+from sqlalchemy.orm import relationship
 from .database import Base
 
 class Image(Base):
     __tablename__ = "images"
 
     id = Column(Integer, primary_key=True, nullable=False) # nullable means cannot be a null value
-    metadata_id = Column(Integer, ForeignKey("metadata.id", ondelete="CASCADE"), nullable=False)
+    metadata_id = Column(Integer, ForeignKey("metadataimg.id", ondelete="CASCADE"), nullable=False)
     country = Column(String, nullable=False)
     location = Column(String, nullable=False)
     s3_url = Column(String, nullable=False)
+
+    # Define relationship to image to ensure cascading behaviour upon deletion
+    metadataimg = relationship("MetadataImg", back_populates="images")
+
+    def __repr__(self):
+        return f'''ID: {self.id}
+                Metadata ID: {self.metadata_id}
+                Country: {self.country}
+                Location: {self.location}
+                S3 URL: {self.s3_url}
+                '''
     
 
-class Metadata(Base):
-    __tablename__ = "metadata"
+class MetadataImg(Base):
+    __tablename__ = "metadataimg"
 
     id = Column(Integer, primary_key=True, nullable=False)
     DateTimeOriginal = Column(String, nullable=False)
@@ -26,6 +38,21 @@ class Metadata(Base):
     ShutterSpeedValue = Column(String, nullable=False)
     ISOSpeedRatings = Column(Integer, nullable=False)
 
+    # Define relationship to image to ensure cascading behaviour upon deletion
+    images = relationship("Image", cascade="all,delete", back_populates="metadataimg")
+
+    def __repr__(self):
+        return f'''ID: {self.id}
+                DateTime: {self.DateTimeOriginal}
+                Model: {self.Model}
+                Lens Model: {self.LensModel}
+                F Number: {self.FNumber}
+                Focal Length: {self.FocalLength}
+                Aperture: {self.ApertureValue}
+                Shutter Speed: {self.ShutterSpeedValue}
+                ISO: {self.ISOSpeedRatings}
+                '''
+
 
 class User(Base):
     __tablename__ = 'users'
@@ -34,3 +61,9 @@ class User(Base):
     username = Column(String, nullable=False)
     password = Column(String) # This will be a hashed password, so if database is breached, security is not
                               # compromised
+
+    def __repr__(self):
+        return f'''ID: {self.id}
+                Username: {self.username}
+                Password:{self.password}
+                '''
