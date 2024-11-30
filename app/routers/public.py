@@ -2,7 +2,7 @@ from fastapi import status, HTTPException, Depends, APIRouter, UploadFile, File
 from app.utils.image_utils import extractEXIF
 from ..utils.s3_utils import s3FilePathExtract
 from app.database import get_db
-from app import models, schemas
+from app import models, schemas, oauth
 from sqlalchemy.orm import Session
 from sqlalchemy import delete
 from string import Template
@@ -44,7 +44,8 @@ def get_images(location: str, db: Session = Depends(get_db),
 # Allows upload of images only by admin, File(...) is to allow multiple file uploads on Swagger UI
 @router.post('/upload', response_model=List[schemas.ImageCreate])
 def upload_images(country: str, location: str | None = None, files: List[UploadFile] = File(...), 
-                  db: Session = Depends(get_db), s3 = Depends(get_s3_client)):
+                  db: Session = Depends(get_db), s3 = Depends(get_s3_client),
+                  current_user = Depends(oauth.get_current_user)):
 
     uploaded_files = []
 
@@ -55,7 +56,12 @@ def upload_images(country: str, location: str | None = None, files: List[UploadF
             # Image type validation
             if not file.content_type.startswith("image"):
                 raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, 
-                                    detail='f"File {file.filename} is not an image')
+                                    detail=f"File {file.filename} is not an image")
+            
+            # Get S3 URL template from environment variable
+            url_template = os.getenv('AWS_S3_URL')
+            if not url_template:
+                raise ValueError("AWS_S3_URL environment variable is not set")
             
             file_content = file.file.read()
             byte_stream = BytesIO(file_content)
@@ -63,11 +69,6 @@ def upload_images(country: str, location: str | None = None, files: List[UploadF
             # Upload image to S3 bucket
             s3_path = f"{country}/{file.filename}"
             s3.upload_fileobj(byte_stream, S3_BUCKET, s3_path)
-
-            # Get S3 URL template from environment variable
-            url_template = os.getenv('AWS_S3_URL')
-            if not url_template:
-                raise ValueError("AWS_S3_URL environment variable is not set")
             
             # Populate S3 URL template
             template = Template(url_template)
@@ -80,14 +81,16 @@ def upload_images(country: str, location: str | None = None, files: List[UploadF
             # Get EXIF metadata from each image 
             file.file.seek(0) # Move file pointer back to the start
             metadata = extractEXIF(file.file)
-
-            # Populate the Metadata Postgres schema using the metadata Pydantic model and commit to database
+            
+            # Populate the Metadata Postgres schema using the metadata Pydantic model
             metadata_entry = models.MetadataImg(**metadata.model_dump())
+
+            # Database commits
             db.add(metadata_entry)
             db.commit()
             db.refresh(metadata_entry)
 
-            # Populate the Image Postgres schema using query parameters, commit to database
+            # Populate the Image Postgres schema using query parameters
             image_entry = models.Image(
                 metadata_id=metadata_entry.id, # Postgres keeps track of last added entry, so we can access the metadata id
                 country=country,
@@ -127,8 +130,9 @@ def upload_images(country: str, location: str | None = None, files: List[UploadF
     return uploaded_files
 
 
-@router.delete('{location}')
-def delete_post(url: str, db: Session = Depends(get_db), s3 = Depends(get_s3_client)):
+@router.delete('/{location}')
+def delete_post(url: str, db: Session = Depends(get_db), s3 = Depends(get_s3_client),
+                current_user = Depends(oauth.get_current_user)):
     
     # Delete from S3
     s3_key = s3FilePathExtract(url)

@@ -1,5 +1,8 @@
 from pydantic import BaseModel, EmailStr
 from pydantic_settings import BaseSettings
+from typing import Optional
+
+# ---------------------------------------------------------------------------
 
 # Pydantic schema for uploading image metadata to Postgres database
 class MetadataBase(BaseModel):
@@ -16,11 +19,44 @@ class MetadataBase(BaseModel):
     extra = "ignore" # Ignore any extra fields not defined in the model
     from_attributes = True
 
+# ---------------------------------------------------------------------------
+
 class ImageCreate(BaseModel):
    country: str
    location: str
    s3_url: str
    metadata: MetadataBase
+
+# ---------------------------------------------------------------------------
+
+class Token(BaseModel):
+   access_token: str
+   token_type: str
+
+# ---------------------------------------------------------------------------
+
+class TokenData(BaseModel):
+    id: Optional[str] = None
+
+# ---------------------------------------------------------------------------
+
+class UserCreate(BaseModel):
+    username: EmailStr
+    password: str
+
+    class Config:
+        from_attributes = True
+
+# ---------------------------------------------------------------------------
+
+class UserOut(BaseModel):
+    id: int
+    email: EmailStr
+
+    class Config:
+        from_attributes = True
+
+# ---------------------------------------------------------------------------
 
 # Pydantic schema for defining database environment variables class
 class Settings(BaseSettings):
@@ -31,6 +67,7 @@ class Settings(BaseSettings):
   database_name: str
   secret_key: str
   algorithm: str
+  access_token_expire_minutes: int
 
   # To tell Pydantic to import from .env file
   class Config:
