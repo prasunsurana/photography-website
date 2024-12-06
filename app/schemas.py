@@ -25,7 +25,7 @@ class ImageCreate(BaseModel):
    country: str
    location: str
    s3_url: str
-   metadata: MetadataBase
+   metadata: MetadataBase | None = None
 
 # ---------------------------------------------------------------------------
 
@@ -74,6 +74,3 @@ class Settings(BaseSettings):
       env_file = '.env'
 
 settings = Settings()
-
-
-

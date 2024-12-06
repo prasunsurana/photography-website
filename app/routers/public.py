@@ -1,4 +1,4 @@
-from fastapi import status, HTTPException, Depends, APIRouter, UploadFile, File
+from fastapi import status, HTTPException, Depends, APIRouter, UploadFile, File, Form
 from app.utils.image_utils import extractEXIF
 from ..utils.s3_utils import s3FilePathExtract
 from app.database import get_db
@@ -36,20 +36,30 @@ def get_images(location: str, db: Session = Depends(get_db),
   
   images = db.query(models.Image).filter(models.Image.country.contains(location))\
       .limit(limit).offset(skip).all()
+  
+  image_schemas = [schemas.ImageCreate(
+                                country=image.country,
+                                location=image.location,
+                                s3_url=image.s3_url,
+                                metadata=schemas.MetadataBase(
+                                **(db.query(models.MetadataImg)
+                                .filter(models.MetadataImg.id == models.Image.metadata_id)
+                                .first()).__dict__)) for image in images]
    
-  return images
+  return image_schemas
 
 # ------------------------------------------------------------------------------------------------
 
 # Allows upload of images only by admin, File(...) is to allow multiple file uploads on Swagger UI
 @router.post('/upload', response_model=List[schemas.ImageCreate])
-def upload_images(country: str, location: str | None = None, files: List[UploadFile] = File(...), 
+def upload_images(country: str = Form(...), location: str | None = Form(None), 
+                  file_upload: List[UploadFile] = File(...), 
                   db: Session = Depends(get_db), s3 = Depends(get_s3_client),
                   current_user = Depends(oauth.get_current_user)):
 
     uploaded_files = []
 
-    for file in files:
+    for file in file_upload:
 
         try:
 
@@ -149,10 +159,8 @@ def delete_post(url: str, db: Session = Depends(get_db), s3 = Depends(get_s3_cli
         db.query(models.MetadataImg).filter(models.MetadataImg.id == to_delete.metadata_id).delete()
 
         # Delete image from database
-        print(to_delete)
         db.delete(to_delete)
         db.commit()
-        print('successfully deleted')
     except Exception as e:
         db.rollback()
         print(e)

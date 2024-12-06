@@ -3,6 +3,10 @@ from sqlalchemy.orm import Session
 from .. import database, schemas, models
 from ..utils import auth_utils as au
 
+''' This has only been used once to add admin details to database. Do not use this endpoint again
+unless there is another user to be added with admin privileges.'''
+
+
 router = APIRouter(
   tags=['User Management']
 )

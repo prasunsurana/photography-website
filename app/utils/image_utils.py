@@ -24,5 +24,3 @@ def extractEXIF(file: UploadFile) -> schemas.MetadataBase:
   metadata = schemas.MetadataBase(**exif)
   
   return metadata
-
-
