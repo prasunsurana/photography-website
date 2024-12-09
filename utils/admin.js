@@ -12,7 +12,7 @@ export function imageFormSubmission() {
         method: "POST",
         body: formData,
         headers: {
-          "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3MzM0OTAzNDN9.kHXEqKiE6nV-V4u75JTXYrPbj5fvUOTYQ5flYMjCfzw"
+          "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3MzM3NTA2MjJ9.ZzbRBK15DLn1YEbH2kV1EzUi_ExaUf2KkkQmD9SurGU"
         }
       });
 

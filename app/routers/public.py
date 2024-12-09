@@ -32,7 +32,9 @@ router = APIRouter(
 # Returns all posts matching a location
 @router.get('/{location}', response_model=List[schemas.ImageCreate])
 def get_images(location: str, db: Session = Depends(get_db),
-                     limit: int = 10,  skip: int = 0):
+                     limit: int = 25,  skip: int = 0):
+  
+  print(location)
   
   images = db.query(models.Image).filter(models.Image.country.contains(location))\
       .limit(limit).offset(skip).all()
