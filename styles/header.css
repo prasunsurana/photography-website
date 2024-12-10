@@ -8,9 +8,14 @@
   src: url('/fonts/antipasto/AntipastoPro-Medium_trial.ttf');
 }
 
+@font-face {
+  font-family: Gidole;
+  src: url(/fonts/Gidole-Regular.ttf);
+}
+
 html,
 body {
-  background-image: url("/Desktop/Photography/Japan/DSC_0263.jpg");
+  background-image: url("/Desktop/Photography/London/DSC_0263.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: left;
