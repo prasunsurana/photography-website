@@ -1,6 +1,6 @@
 from PIL import Image, ExifTags
 from fastapi import UploadFile
-from app import schemas
+from app.backend import schemas
 import tempfile
 
 def extractEXIF(file: UploadFile) -> schemas.MetadataBase:

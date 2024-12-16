@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio | Prasun Surana Photography</title>
+
+  <link rel="stylesheet" href="../styles/header.css">
+  <link rel="stylesheet" href="../styles/portfolio.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+</head>
+
+<body>
+  <div class="main-content" data-scroll-container>
+    <section class="intro-section">
+      <img class="heading-pic" data-scroll data-scroll-speed="3">
+      <nav class="navbar">
+        <div class="logo-div"><a class="logo" href="#">PRASUN SURANA</a></div>
+        <hr class="separator">
+        <div class="nav-list-div">
+          <ul class="nav-list">
+            <li><a class="nav-link" href="index.html">HOME</a></li>
+            <li><a class="nav-link" href="index.html#about-section">ABOUT</a></li>
+            <li>
+              <a id="portfolio-dropdown" class="nav-link" href="">PORTFOLIO</a>
+              <ul class="dropdown">
+                <li><a href="/frontend/portfolio.html?country=Taiwan">Taiwan</a></li>
+                <li><a href="/frontend/portfolio.html?country=UK">UK</a></li>
+                <li><a href="/frontend/portfolio.html?country=USA">USA</a></li>
+              </ul>
+            </li>
+            <li><a class="nav-link" href="#">CONTACT</a></li>
+          </ul>
+        </div>
+      </nav>
+    </section>
+    <section class="photo-section">
+      <h2 class="photo-grid-header"></h2>
+      <div class="photo-grid"></div>
+    </section>
+  </div>
+  <script type="module" src="../utils/public.js"></script>
+  <script type="module" src="../utils/scroll.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
+</body>
+
+</html>

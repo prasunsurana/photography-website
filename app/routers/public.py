@@ -1,8 +1,8 @@
 from fastapi import status, HTTPException, Depends, APIRouter, UploadFile, File, Form
 from app.utils.image_utils import extractEXIF
 from ..utils.s3_utils import s3FilePathExtract
-from app.database import get_db
-from app import models, schemas, oauth
+from app.backend.database import get_db
+from app.backend import models, schemas, oauth
 from sqlalchemy.orm import Session
 from sqlalchemy import delete
 from string import Template
@@ -33,8 +33,6 @@ router = APIRouter(
 @router.get('/{location}', response_model=List[schemas.ImageCreate])
 def get_images(location: str, db: Session = Depends(get_db),
                      limit: int = 25,  skip: int = 0):
-  
-  print(location)
   
   images = db.query(models.Image).filter(models.Image.country.contains(location))\
       .limit(limit).offset(skip).all()

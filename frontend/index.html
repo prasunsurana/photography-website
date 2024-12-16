@@ -6,35 +6,68 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Prasun Surana Photography</title>
 
-  <link rel="stylesheet" href="../styles/index.css">
+  <link rel="stylesheet" href="../styles/header.css">∂
+  <link rel="stylesheet" href="../styles/about.css">
+  <link rel="stylesheet" href="../styles/socials.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
 </head>
 
 <body>
   <div class="main-content" data-scroll-container>
     <section class="intro-section">
-      <img class="intro-pic" src="/DSC_0367.jpg" data-scroll data-scroll-speed="3">
+      <img class="intro-pic" src="/photos/DSC_0367.jpg" data-scroll data-scroll-speed="3">
       <nav class="navbar">
         <div class="logo-div"><a class="logo" href="#">PRASUN SURANA</a></div>
         <hr class="separator">
         <div class="nav-list-div">
           <ul class="nav-list">
             <li><a class="nav-link" href="#">HOME</a></li>
-            <li><a class="nav-link" href="#">ABOUT</a></li>
-            <li><a class="nav-link" href="#">PORTFOLIO</a></li>
-            <li><a class="nav-link" href="#">CONTACT</a></li>
+            <li><a class="nav-link" href="#about-section">ABOUT</a></li>
+            <li>
+              <a id="portfolio-dropdown" class="nav-link" href="#">PORTFOLIO</a>
+              <ul class="dropdown">
+                <li><a href="/frontend/portfolio.html?country=Taiwan">Taiwan</a></li>
+                <li><a href="/frontend/portfolio.html?country=UK">UK</a></li>
+                <li><a href="/frontend/portfolio.html?country=US">USA</a></li>
+              </ul>
+            </li>
+            <li><a class="nav-link" href="contact.html">CONTACT</a></li>
           </ul>
         </div>
       </nav>
     </section>
-    <section class="about-section">
-      <img class="about-pic" src="/DSC_0550.jpg" data-scroll data-scroll-speed="3">
+    <section class="about-section" id="about-section">
+      <img class="about-pic" src="/photos/DSC_0550.jpg" data-scroll data-scroll-speed="2">
     </section>
     <section class="contact-section">
+      <div class="contact-heading-div">
+        <h1 class="contact-heading">Keep up to date with new albums</h1>
+      </div>
+      <div class="subscriber-div">
+        <input class="subscriber-input" placeholder="Email Address">
+        <button class="subscribe">SUBSCRIBE</button>
+      </div>
+      <div class="social-div">
+        <h2 class="follow-heading">Follow</h2>
+        <hr class="follow-separator">
+        <div class="social-container-row">
+          <a class="social-links" href="https://www.instagram.com/prasunsurana/" target="_blank">
+            <ion-icon class="social-logo insta" name="logo-instagram"></ion-icon>
+          </a>
+          <a class="social-links" href="https://github.com/prasunsurana" target="_blank">
+            <ion-icon class="social-logo github" name="logo-github"></ion-icon>
+          </a>
+          <a class="social-links" href="/frontend/contactform.html" target="_self">
+            <ion-icon class="social-logo mail" name="mail-outline"></ion-icon>
+          </a>
+        </div>
+      </div>
     </section>
   </div>
   <script type="module" src="../utils/scroll.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>

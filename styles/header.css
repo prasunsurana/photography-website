@@ -1,86 +1,122 @@
 @font-face {
-  font-family: Antipasto;
-  src: url('/fonts/antipasto/AntipastoPro-Thin_trial.ttf') format('truetype');
+  font-family: "Aileron";
+  src: url("/fonts/aileron/Aileron-SemiBold.otf");
 }
 
 @font-face {
-  font-family: AntipastoBold;
-  src: url('/fonts/antipasto/AntipastoPro-Medium_trial.ttf');
+  font-family: "AileronLight";
+  src: url("/fonts/aileron/Aileron-Light.otf");
 }
 
-@font-face {
-  font-family: Gidole;
-  src: url(/fonts/Gidole-Regular.ttf);
+html {
+  scroll-behavior: smooth;
 }
 
-html,
+[data-scroll-container] {
+  height: 100%;
+  overflow: hidden;
+}
+
 body {
-  background-image: url("/Desktop/Photography/London/DSC_0263.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: left;
-  background-attachment: fixed;
-  min-width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: black;
 }
 
-.nav-container {
+.intro-section {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  font-family: "Antipasto";
-  margin-right: 4px;
-}
-
-.nav-link {
-  font-family: 'Antipasto';
-  color: white;
-  text-decoration: None;
-  margin-right: 30px;
-  letter-spacing: 1.3px;
-}
-
-.nav-list {
-  text-decoration: None;
-  list-style: None;
-  display: flex;
-  justify-content: flex-end;
   align-items: center;
 }
 
-.logo-container {
-  text-align: center;
-  margin-top: 10px;
+.intro-pic {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.navbar {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+  position: absolute;
+  top: 250px;
 }
 
 .logo {
   text-decoration: None;
-  color: white;
-  font-size: 30px;
-  margin-left: 15px;
-  letter-spacing: 1.3px;
+  color: #2f3030;
+  font-family: "Aileron";
+  font-size: 3.5em;
 }
 
-.bracket {
-  font-family: "AntipastoBold";
-}
-
-.contact-button {
-  background-image: linear-gradient(#1f9a76, #0f5441);
-  width: 70px;
-  font-family: "Antipasto";
-  font-size: 16px;
-  border: None;
+.separator {
+  width: 30%;
+  height: 2px;
+  background-color: #2f3030;
+  border: none;
   border-radius: 5px;
-  padding: 9px;
-  margin-right: 4px;
-  cursor: pointer;
-  text-align: center;
 }
 
-.contact-button:hover {
-  filter: brightness(120%);
-  transform: scale(1.1) perspective(1px);
-  -webkit-font-smoothing: subpixel-antialiased;
-  transition: 0.2s;
+.nav-list-div {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 20px;
+}
+
+.nav-list {
+  display: flex;
+  list-style-type: none;
+  gap: 30px;
+  padding-right: 40px;
+}
+
+.nav-link {
+  list-style: none;
+  font-family: "AileronLight";
+  font-size: 11px;
+  text-decoration: none;
+  color: #2f3030;
+}
+
+.nav-link:hover {
+  opacity: 0.6;
+}
+
+.dropdown li {
+  display: block;
+  padding-bottom: 5px;
+}
+
+ul.dropdown {
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+  position: absolute;
+  z-index: 999;
+  margin: 0;
+  padding: 0;
+  display: none;
+  width: 70px;
+  padding-top: 4px;
+}
+
+ul.dropdown li a {
+  text-decoration: none;
+  color: black;
+  font-family: "AileronLight";
+  font-size: 13px;
+  text-align: left;
+  white-space: nowrap;
+  color: #2f3030;
+  padding-left: 5px;
+}
+
+li:hover ul.dropdown {
+  display: block;
 }

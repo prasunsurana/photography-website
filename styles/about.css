@@ -1,25 +1,16 @@
-@font-face {
-  font-family: JetBrainsMono;
-  src: url('/fonts/jetbrainsmono/JetBrainsMono-Medium.ttf') format('truetype');
-}
-
-.info-div {
-  z-index: 100;
-  background-color: white;
+.about-section {
   position: relative;
-  top: 100px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-  border-radius: 10px;
-  opacity: 0.45;
-  text-align: justify;
+  height: 600px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
-.about-info {
-  color: black;
-  font-family: "JetBrainsMono";
-  margin: 20px;
-  padding: 10px;
-
+.about-pic {
+  height: 600px;
+  object-fit: cover;
+  border-radius: 3px;
 }
