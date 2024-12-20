@@ -2,7 +2,6 @@ export function imageFormSubmission() {
 
   const imageForm = document.getElementById('upload-form');
 
-  // When 
   imageForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     const formData = new FormData(imageForm);
@@ -27,5 +26,29 @@ export function imageFormSubmission() {
     }
   });
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const uploadButton = document.getElementById('upload-button');
+  const overlay = document.getElementById('overlay');
+  const popup = document.getElementById('upload-modal');
+  const closeButton = document.getElementById('x-button');
+
+  uploadButton.addEventListener('click', () => {
+    overlay.classList.remove('is-hidden');
+    popup.classList.remove('is-hidden');
+  });
+
+  closeButton.addEventListener('click', () => {
+    overlay.classList.add('is-hidden');
+    popup.classList.add('is-hidden');
+  });
+
+  overlay.addEventListener('click', (event) => {
+    if (!popup.contains(event.target)) {
+      overlay.classList.add('is-hidden');
+      popup.classList.add('is-hidden');
+    }
+  });
+});
 
 imageFormSubmission();

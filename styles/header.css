@@ -53,6 +53,7 @@ body {
   color: #2f3030;
   font-family: "Aileron";
   font-size: 3.5em;
+  letter-spacing: 4px;
 }
 
 .separator {
@@ -81,6 +82,7 @@ body {
   list-style: none;
   font-family: "AileronLight";
   font-size: 11px;
+  letter-spacing: 1.5px;
   text-decoration: none;
   color: #2f3030;
 }
@@ -104,6 +106,7 @@ ul.dropdown {
   display: none;
   width: 70px;
   padding-top: 4px;
+  overflow-y: scroll;
 }
 
 ul.dropdown li a {

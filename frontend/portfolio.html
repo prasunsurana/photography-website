@@ -12,11 +12,29 @@
 </head>
 
 <body>
+  <div id="overlay" class="is-hidden"></div>
+  <div id="upload-modal" class="is-hidden">
+    <div id="upload-header">
+      <h1 id="upload-title"></h1>
+      <label id="x-button">&times;</label>
+    </div>
+    <form id="upload-form" enctype="multipart/form-data">
+      <input type="file" id="upload" name="file_upload" accept="image/*" style="display: None" multiple>
+      <label for="upload" id="upload-area"><span id="upload-text">Upload File</span></label>
+      <div id="location-container">
+        <input id="location" placeholder="Location" autocomplete="off">
+        <input id="country" placeholder="Country" autocomplete="off">
+      </div>
+      <input id="caption" placeholder="Enter Caption" autocomplete="off">
+      <button id="submit" type="submit">Submit</button>
+    </form>
+  </div>
+
   <div class="main-content" data-scroll-container>
     <section class="intro-section">
       <img class="heading-pic" data-scroll data-scroll-speed="3">
       <nav class="navbar">
-        <div class="logo-div"><a class="logo" href="#">PRASUN SURANA</a></div>
+        <div class="logo-div"><a class="logo" href="index.html">PRASUN SURANA</a></div>
         <hr class="separator">
         <div class="nav-list-div">
           <ul class="nav-list">
@@ -36,12 +54,14 @@
       </nav>
     </section>
     <section class="photo-section">
+      <label id="upload-label"><a id="upload-button">Upload</a></label>
       <h2 class="photo-grid-header"></h2>
       <div class="photo-grid"></div>
     </section>
   </div>
   <script type="module" src="../utils/public.js"></script>
   <script type="module" src="../utils/scroll.js"></script>
+  <script type="module" src="../utils/admin.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
 </body>
 
