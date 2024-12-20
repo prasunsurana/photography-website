@@ -1,0 +1,139 @@
+.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  backdrop-filter: blur(0px);
+  background-color: rgba(0, 0, 0, 0);
+  transition: backdrop-filter 0.3s ease-in-out, opacity 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+#overlay {
+  backdrop-filter: blur(0px);
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 15;
+  background-color: rgba(0, 0, 0, 0);
+  transition: backdrop-filter 0.3s ease-in-out, opacity 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+#overlay:not(.is-hidden) {
+  backdrop-filter: blur(6px);
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+#upload-modal {
+  width: 60vw;
+  max-width: 650px;
+  height: 46vh;
+  min-height: 440px;
+  background-color: #f0eded;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  position: absolute;
+  z-index: 999;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  transform-origin: top left;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  border-radius: 7px;
+  pointer-events: none;
+}
+
+#upload-modal:not(.is-hidden) {
+  transform: translate(-50%, -50%) scale(1);
+  /* Scale to normal size */
+  opacity: 1;
+  /* Fully visible */
+  pointer-events: auto;
+  /* Allow interactions */
+}
+
+#upload-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#upload-header label {
+  margin-right: 5px;
+  color: #636262;
+  cursor: pointer;
+}
+
+#upload-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#location-container {
+  width: 90%;
+  display: flex;
+  gap: 10px;
+}
+
+#upload-form input {
+  font-family: "AileronLight";
+  font-size: 11px;
+  padding-left: 10px;
+  border: 1px solid grey;
+  flex-grow: 1;
+  outline: none;
+  height: 40px;
+  letter-spacing: 1.6px;
+  margin-bottom: 10px;
+}
+
+#caption {
+  width: 88%;
+}
+
+#upload-area {
+  background-color: white;
+  color: #ababab;
+  height: 200px;
+  width: 90%;
+  margin: auto;
+  border: 2px dashed #ababab;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "AileronLight";
+  font-size: 22px;
+  letter-spacing: 3px;
+  cursor: pointer;
+  transition: 200ms;
+}
+
+#upload-area:hover {
+  border: 2px dashed #525454;
+  color: #525454;
+  font-size: 1.2em;
+}
+
+#submit {
+  font-family: "AileronLight";
+  font-size: 11px;
+  height: 43px;
+  width: 130px;
+  border: 3px solid black;
+  cursor: pointer;
+  letter-spacing: 1.5px;
+}
+
+#submit:hover {
+  background-color: black;
+  color: white;
+  transition: 0.5s;
+}
