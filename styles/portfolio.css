@@ -10,7 +10,7 @@ body {
 
 .intro-section {
   width: 100vw;
-  height: 95vh;
+  height: 700px;
   margin: 0;
   padding: 0;
   display: block;
@@ -34,10 +34,9 @@ body {
   width: 100%;
   margin-bottom: 180px;
   cursor: pointer;
-}
-
-.img:hover {
-  opacity: 0.7;
+  -webkit-animation: appear 1s ease-out forwards;
+  -webkit-animation-timeline: view();
+  -webkit-animation-range: entry 0% cover 40%;
 }
 
 .photo-grid {
@@ -55,7 +54,7 @@ body {
   width: max-content;
   position: absolute;
   right: 3px;
-  top: -30px;
+  top: -25px;
   cursor: pointer;
   letter-spacing: 1.5px;
 }
@@ -102,5 +101,39 @@ body {
 
   .logo-div {
     font-size: 5.18vw;
+  }
+}
+
+/* @media (prefers-reduced-motion: no-preference) {
+  .img {
+    transform: translateX(-80px);
+    opacity: 0;
+    backdrop-filter: blur(4px);
+  }
+
+  .img.animate {
+    -webkit-animation: fade-in 1s ease-out forwards;
+  }
+
+  @keyframes fade-in {
+    to {
+      transform: translateX(0px);
+      opacity: 1;
+      backdrop-filter: blur(0px);
+    }
+  }
+} */
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateX(-80px);
+    backdrop-filter: blur(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+    backdrop-filter: blur(0px);
   }
 }

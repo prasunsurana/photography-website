@@ -6,17 +6,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Prasun Surana Photography</title>
 
-  <link rel="stylesheet" href="../styles/header.css">∂
+  <link rel="stylesheet" href="../styles/header.css">
   <link rel="stylesheet" href="../styles/about.css">
   <link rel="stylesheet" href="../styles/socials.css">
+  <link rel="stylesheet" href="../styles/login.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
 </head>
 
 <body>
   <div class="main-content" data-scroll-container>
+    <div id="overlay" class="is-hidden"></div>
+    <div id="login-modal" class="is-hidden">
+      <h1 id="modal-header">Login</h1>
+      <form id="login-form" enctype="multipart/form-data">
+        <div id="credentials-container">
+          <input id="username" name="username" placeholder="Username" autocomplete="off">
+          <input id="password" name="password" type="password" placeholder="Password" autocomplete="off">
+        </div>
+        <div id="buttons-div">
+          <button id="login" class="buttons" type="submit">Login</button>
+        </div>
+      </form>
+    </div>
+    <div id="logout-modal" class="is-hidden">
+      <h1 id="modal-header">Are you sure you want to log out?</h1>
+      <div class="buttons-div">
+        <button id="logout" class="buttons">Logout</button>
+        <button id="cancel" class="buttons">Cancel</button>
+      </div>
+    </div>
     <section class="intro-section">
-      <img class="intro-pic" src="/photos/DSC_0367.jpg" data-scroll data-scroll-speed="3">
-      <nav class="navbar">
+      <label id="login-label"><a id="login-button">Login</a></label>
+      <nav class="navbar" data-scroll data-scroll-speed="2">
         <div class="logo-div"><a class="logo" href="#">PRASUN SURANA</a></div>
         <hr class="separator">
         <div class="nav-list-div">
@@ -37,7 +58,7 @@
       </nav>
     </section>
     <section class="about-section" id="about-section">
-      <img class="about-pic" src="/photos/DSC_0550.jpg" data-scroll data-scroll-speed="2">
+      <img class="about-pic" src="/photos/DSC_0550.jpg" data-scroll data-scroll-speed="3">
     </section>
     <section class="contact-section">
       <div class="contact-heading-div">
@@ -65,6 +86,7 @@
     </section>
   </div>
   <script type="module" src="../utils/scroll.js"></script>
+  <script type="module" src="../utils/admin.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

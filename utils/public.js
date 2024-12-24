@@ -7,8 +7,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     return;
   }
 
-  let headerImage = document.querySelector('.heading-pic');
-  headerImage.src = `/photos/${country}.jpg`;
+  let introSection = document.querySelector('.intro-section');
+  introSection.style.background = `url('../photos/${country}.jpg')`
+  introSection.style.backgroundSize = 'cover';
 
   let gridHeader = document.querySelector('.photo-grid-header');
   gridHeader.innerHTML = country.toUpperCase();
@@ -24,7 +25,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       photoGrid.innerHTML = "";
 
       for (const [key, value] of result.entries()) {
+        let imageDiv = document.createElement('div');
         let image = document.createElement("img");
+        imageDiv.appendChild(image);
         image.className = "img";
         image.src = value.s3_url;
         photoGrid.appendChild(image);
@@ -36,6 +39,28 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.error('Error fetching images: ', error);
   }
 });
+
+// ------------------------------------------------------------------------------------------------
+
+document.addEventListener('DOMContentLoaded', () => {
+  const images = document.querySelectorAll('.img');
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate'); // Add the animation class
+        observer.unobserve(entry.target); // Stop observing once the animation is triggered
+      }
+    });
+  });
+
+  images.forEach((image) => {
+    observer.observe(image);
+  });
+});
+
+// ------------------------------------------------------------------------------------------------
+
 
 // After you are finished with local development and deployed the website, make sure you go to the Permissions
 // tab of your S3 bucket, go to CORS, and change Allowed Origins in the JSON to the website URL.

@@ -24,8 +24,11 @@ body {
 }
 
 .intro-section {
+  background-image: url('../photos/DSC_0367.jpg');
+  background-size: cover;
+  background-position: 100% 100%;
   width: 100vw;
-  height: 100vh;
+  height: 700px;
   margin: 0;
   padding: 0;
   display: flex;
@@ -107,6 +110,7 @@ ul.dropdown {
   width: 70px;
   padding-top: 4px;
   overflow-y: scroll;
+  transition: 200ms;
 }
 
 ul.dropdown li a {

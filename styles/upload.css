@@ -7,29 +7,25 @@
 }
 
 #overlay {
-  backdrop-filter: blur(0px);
-  opacity: 0;
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   z-index: 15;
-  background-color: rgba(0, 0, 0, 0);
   transition: backdrop-filter 0.3s ease-in-out, opacity 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
 #overlay:not(.is-hidden) {
   backdrop-filter: blur(6px);
   opacity: 1;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
 }
-
 
 #upload-modal {
   width: 60vw;
   max-width: 650px;
-  height: 46vh;
+  height: 43vh;
   min-height: 440px;
   background-color: #f0eded;
   display: flex;
@@ -49,11 +45,8 @@
 
 #upload-modal:not(.is-hidden) {
   transform: translate(-50%, -50%) scale(1);
-  /* Scale to normal size */
   opacity: 1;
-  /* Fully visible */
   pointer-events: auto;
-  /* Allow interactions */
 }
 
 #upload-header {
@@ -130,6 +123,7 @@
   border: 3px solid black;
   cursor: pointer;
   letter-spacing: 1.5px;
+  margin-top: 8px;
 }
 
 #submit:hover {

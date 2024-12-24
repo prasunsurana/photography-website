@@ -1,6 +1,6 @@
 .about-section {
   position: relative;
-  height: 600px;
+  height: 550px;
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -10,7 +10,7 @@
 }
 
 .about-pic {
-  height: 600px;
+  height: 550px;
   object-fit: cover;
   border-radius: 3px;
 }
