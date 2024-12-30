@@ -24,6 +24,7 @@ class MetadataBase(BaseModel):
 class ImageCreate(BaseModel):
    country: str
    location: str
+   caption: str
    s3_url: str
    metadata: MetadataBase | None = None
 

@@ -13,8 +13,6 @@ def login(user_credentials: OAuth2PasswordRequestForm = Depends(), db: Session =
 
   user = db.query(models.User).filter(models.User.username == user_credentials.username).first()
 
-  print(user_credentials)
-
   if not user:
     raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,
                         detail="This user does not exist")

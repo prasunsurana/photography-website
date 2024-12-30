@@ -40,6 +40,7 @@ def get_images(location: str, db: Session = Depends(get_db),
   image_schemas = [schemas.ImageCreate(
                                 country=image.country,
                                 location=image.location,
+                                caption =image.caption,
                                 s3_url=image.s3_url,
                                 metadata=schemas.MetadataBase(
                                 **(db.query(models.MetadataImg)
@@ -52,10 +53,12 @@ def get_images(location: str, db: Session = Depends(get_db),
 
 # Allows upload of images only by admin, File(...) is to allow multiple file uploads on Swagger UI
 @router.post('/upload', response_model=List[schemas.ImageCreate])
-def upload_images(country: str = Form(...), location: str | None = Form(None), 
+def upload_images(country: str = Form(...), 
+                  location: str | None = Form(None),
+                  caption: str | None = Form(None), 
                   file_upload: List[UploadFile] = File(...), 
-                  db: Session = Depends(get_db), s3 = Depends(get_s3_client),
-                  current_user = Depends(oauth.get_current_user)):
+                  db: Session = Depends(get_db), 
+                  s3 = Depends(get_s3_client)):
 
     uploaded_files = []
 
@@ -104,6 +107,7 @@ def upload_images(country: str = Form(...), location: str | None = Form(None),
             image_entry = models.Image(
                 metadata_id=metadata_entry.id, # Postgres keeps track of last added entry, so we can access the metadata id
                 country=country,
+                caption=caption,
                 location=location,
                 s3_url=s3_url
             )
@@ -116,6 +120,7 @@ def upload_images(country: str = Form(...), location: str | None = Form(None),
             return_schema = schemas.ImageCreate(
                 country=country,
                 location=location,
+                caption=caption,
                 s3_url=s3_url,
                 metadata=metadata_entry
             )

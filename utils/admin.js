@@ -2,18 +2,45 @@
 
 export function imageFormSubmission() {
 
+  const input = document.getElementById('upload');
+
+  input.addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const inputLabel = document.getElementById('upload-area');
+      inputLabel.style.backgroundImage = `url('${e.target.result}')`
+      inputLabel.style.backgroundSize = 'cover';
+    };
+    reader.readAsDataURL(file);
+  })
+
   const imageForm = document.getElementById('upload-form');
 
   imageForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     const formData = new FormData(imageForm);
 
+    let token = '';
+    const cookies = document.cookie.split('; ');
+    for (const cookie of cookies) {
+      const [key, value] = cookie.split('=');
+      if (key === "access_token") {
+        token = value;
+      }
+    }
+
+    console.log(formData);
+    for (const [key, value] of formData.entries()) {
+      console.log(key, value);
+    }
+
     try {
       const response = await fetch("http://127.0.0.1:8000/posts/upload", {
         method: "POST",
         body: formData,
         headers: {
-          "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3MzM3NTA2MjJ9.ZzbRBK15DLn1YEbH2kV1EzUi_ExaUf2KkkQmD9SurGU"
+          "Authorization": `Bearer ${token}`
         }
       });
 
@@ -39,6 +66,8 @@ if (window.location.pathname.endsWith('portfolio.html')) {
     const overlay = document.getElementById('overlay');
     const popup = document.getElementById('upload-modal');
     const closeButton = document.getElementById('x-button');
+    const uploadForm = document.getElementById('upload-form')
+    const uploadArea = document.getElementById('upload-area');
 
     uploadButton.addEventListener('click', () => {
       overlay.classList.remove('is-hidden');
@@ -48,12 +77,17 @@ if (window.location.pathname.endsWith('portfolio.html')) {
     closeButton.addEventListener('click', () => {
       overlay.classList.add('is-hidden');
       popup.classList.add('is-hidden');
+      uploadForm.reset();
+      uploadArea.style.backgroundImage = 'none';
+
     });
 
     overlay.addEventListener('click', (event) => {
       if (!popup.contains(event.target)) {
         overlay.classList.add('is-hidden');
         popup.classList.add('is-hidden');
+        uploadForm.reset();
+        uploadArea.style.backgroundImage = 'none';
       }
     });
   });
@@ -64,8 +98,15 @@ if (window.location.pathname.endsWith('portfolio.html')) {
 // Opening/closing login and logout modals
 
 if (window.location.pathname.endsWith('index.html')) {
+
+  const loginButton = document.getElementById('login-button');
+  if (document.cookie) {
+    loginButton.textContent = 'Logout';
+  } else {
+    loginButton.textContent = 'Login';
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
-    const loginButton = document.getElementById('login-button');
     const overlay = document.getElementById('overlay');
     const loginModal = document.getElementById('login-modal');
     const logoutModal = document.getElementById('logout-modal');
@@ -133,7 +174,7 @@ if (window.location.pathname.endsWith('index.html')) {
       }
 
       const data = await response.json();
-      document.cookie = `accessToken=${data.access_token}; path=/`;
+      document.cookie = `accessToken=${data.access_token}; path=/; max-age=3600`;
 
       const loginModal = document.getElementById('login-modal');
       const overlay = document.getElementById('overlay');
@@ -161,10 +202,8 @@ if (window.location.pathname.endsWith('portfolio.html')) {
   document.addEventListener('DOMContentLoaded', () => {
     const uploadButton = document.getElementById('upload-label');
     if (document.cookie) {
-      console.log('yes');
       uploadButton.style.display = "block";
     } else {
-      console.log('naur');
       uploadButton.style.display = "none";
     }
   });
@@ -172,4 +211,4 @@ if (window.location.pathname.endsWith('portfolio.html')) {
 
 // ------------------------------------------------------------------------------------------------
 
-// imageFormSubmission();
+imageFormSubmission();

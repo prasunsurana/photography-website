@@ -165,8 +165,10 @@
 }
 
 #logout-modal h1 {
-  font-size: 15px;
+  font-family: "AileronLight";
+  font-size: 12px;
   margin-top: 25px;
+  -webkit-font-smoothing: auto;
 }
 
 #logout-modal div {

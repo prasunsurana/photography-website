@@ -9,6 +9,7 @@ class Image(Base):
     metadata_id = Column(Integer, ForeignKey("metadataimg.id", ondelete="CASCADE"), nullable=False)
     country = Column(String, nullable=False)
     location = Column(String, nullable=False)
+    caption = Column(String, nullable=False)
     s3_url = Column(String, nullable=False)
 
     # Define relationship to image to ensure cascading behaviour upon deletion

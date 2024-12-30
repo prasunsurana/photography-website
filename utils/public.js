@@ -25,25 +25,57 @@ document.addEventListener('DOMContentLoaded', async () => {
       photoGrid.innerHTML = "";
 
       for (const [key, value] of result.entries()) {
+
         let imageDiv = document.createElement('div');
         let image = document.createElement("img");
-        imageDiv.appendChild(image);
+        let infoContainer = document.createElement('div');
+        let captionDiv = document.createElement('div');
+        let locationDiv = document.createElement('div');
+        let caption = document.createElement('label');
+        let location = document.createElement('label');
+        let deleteButton = document.createElement('div')
+
+        imageDiv.className = 'image-div';
         image.className = "img";
+        infoContainer.className = 'info-container'
+        captionDiv.className = 'caption-div';
+        locationDiv.className = 'location-container';
+        caption.className = 'caption';
+        location.className = 'location';
+        deleteButton.className = 'delete-container'
+
+        deleteButton.innerHTML = '<ion-icon id="delete-icon" name="trash-outline"></ion-icon>'
+
         image.src = value.s3_url;
-        photoGrid.appendChild(image);
+        caption.textContent = value.caption;
+        location.textContent = value.location;
+
+        image.onload = () => {
+          imageDiv.style.height = `${image.height + infoContainer.offsetHeight + 10}px`; ``
+        };
+
+        imageDiv.appendChild(image);
+        imageDiv.appendChild(infoContainer);
+        imageDiv.appendChild(deleteButton);
+        infoContainer.appendChild(captionDiv);
+        infoContainer.appendChild(locationDiv);
+        captionDiv.appendChild(caption);
+        locationDiv.appendChild(location);
+        photoGrid.appendChild(imageDiv);
       }
+
     } else {
       console.error('Failed to fetch images: ', response.statusText);
     }
   } catch (e) {
-    console.error('Error fetching images: ', error);
+    console.error('Error fetching images: ', e);
   }
 });
 
 // ------------------------------------------------------------------------------------------------
 
 document.addEventListener('DOMContentLoaded', () => {
-  const images = document.querySelectorAll('.img');
+  const images = document.querySelectorAll('.image-div');
 
   const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
@@ -52,6 +84,10 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.unobserve(entry.target); // Stop observing once the animation is triggered
       }
     });
+  }, {
+    root: null, // Use the viewport as the root
+    rootMargin: '0px 0px -60% 0px', // Trigger 40% up from the bottom of the viewport
+    threshold: 0 // Trigger when any part of the target is visible
   });
 
   images.forEach((image) => {
