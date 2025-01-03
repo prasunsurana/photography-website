@@ -1,3 +1,7 @@
+import { retrieveCookie } from "./portfolioAdmin.js";
+
+// Dynamically create photo grid
+
 document.addEventListener('DOMContentLoaded', async () => {
   const params = new URLSearchParams(window.location.search);
   const country = params.get('country');
@@ -7,6 +11,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     return;
   }
 
+  // Dynamically create heading image for each country
   let introSection = document.querySelector('.intro-section');
   introSection.style.background = `url('../photos/${country}.jpg')`
   introSection.style.backgroundSize = 'cover';
@@ -14,6 +19,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   let gridHeader = document.querySelector('.photo-grid-header');
   gridHeader.innerHTML = country.toUpperCase();
 
+  // API request for image display 
   try {
     const response = await fetch(`http://127.0.0.1:8000/posts/${country}`, {
       method: "GET"
@@ -24,6 +30,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const photoGrid = document.querySelector('.photo-grid')
       photoGrid.innerHTML = "";
 
+      // Create template for each image, with divs, captions and delete button
       for (const [key, value] of result.entries()) {
 
         let imageDiv = document.createElement('div');
@@ -42,16 +49,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         locationDiv.className = 'location-container';
         caption.className = 'caption';
         location.className = 'location';
-        deleteButton.className = 'delete-container'
+        deleteButton.classList.add('admin', 'delete-container');
 
-        deleteButton.innerHTML = '<ion-icon id="delete-icon" name="trash-outline"></ion-icon>'
+        deleteButton.innerHTML = '<ion-icon class="delete-icon" name="trash-outline"></ion-icon>'
 
         image.src = value.s3_url;
         caption.textContent = value.caption;
         location.textContent = value.location;
 
         image.onload = () => {
-          imageDiv.style.height = `${image.height + infoContainer.offsetHeight + 10}px`; ``
+          imageDiv.style.height = `${image.height + infoContainer.offsetHeight + 10}px`;
         };
 
         imageDiv.appendChild(image);
@@ -62,6 +69,59 @@ document.addEventListener('DOMContentLoaded', async () => {
         captionDiv.appendChild(caption);
         locationDiv.appendChild(location);
         photoGrid.appendChild(imageDiv);
+
+        const access_token = retrieveCookie();
+
+        // Toggle display of delete button based on admin login
+        if (access_token) {
+          deleteButton.style.display = 'block';
+          deleteButton.style.pointerEvents = 'auto';
+        } else {
+          deleteButton.style.display = 'none';
+          deleteButton.style.pointerEvents = 'none';
+        }
+
+        // Event listener for image deletion functionality
+        deleteButton.addEventListener('click', () => {
+          const imageElement = deleteButton.parentNode;
+          Array.from(imageElement.childNodes).forEach(async (ele) => {
+            if (ele instanceof HTMLImageElement) {
+              try {
+                // URL parameter for FastAPI backend endpoint must be included as a query parameter
+                const response = await fetch(`http://127.0.0.1:8000/posts/${country}?url=${encodeURIComponent(ele.src)}`, {
+                  method: "DELETE",
+                  headers: {
+                    "Authorization": `Bearer ${access_token}`
+                  },
+                });
+
+                if (response.ok) {
+
+                  // Check if image was the last in album to be deleted. If so, delete album from dropdown.
+                  console.log(photoGrid);
+                  console.log(photoGrid.childNodes.length)
+                  if (photoGrid.childNodes.length === 1) {
+                    const dropdown = document.querySelector('.dropdown')
+                    Array.from(dropdown.childNodes).forEach((li) => {
+                      console.log(li.textContent);
+                      if (li.textContent.trim() === country) {
+                        dropdown.removeChild(li);
+                        window.location.href = 'index.html';
+                      }
+                    })
+                  } else {
+                    window.location.reload();
+                  }
+                  console.log('Successfully deleted!')
+                } else {
+                  console.log('Failed to delete post: ', response.status)
+                }
+              } catch (error) {
+                console.log(error);
+              }
+            }
+          });
+        });
       }
 
     } else {
@@ -96,7 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ------------------------------------------------------------------------------------------------
-
 
 // After you are finished with local development and deployed the website, make sure you go to the Permissions
 // tab of your S3 bucket, go to CORS, and change Allowed Origins in the JSON to the website URL.

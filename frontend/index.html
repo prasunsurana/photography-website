@@ -46,11 +46,7 @@
             <li><a class="nav-link" href="#about-section">ABOUT</a></li>
             <li>
               <a id="portfolio-dropdown" class="nav-link" href="#">PORTFOLIO</a>
-              <ul class="dropdown">
-                <li><a href="/frontend/portfolio.html?country=Taiwan">Taiwan</a></li>
-                <li><a href="/frontend/portfolio.html?country=UK">UK</a></li>
-                <li><a href="/frontend/portfolio.html?country=US">USA</a></li>
-              </ul>
+              <ul class="dropdown"></ul>
             </li>
             <li><a class="nav-link" href="contact.html">CONTACT</a></li>
           </ul>
@@ -65,7 +61,10 @@
         <h1 class="contact-heading">Keep up to date with new albums</h1>
       </div>
       <div class="subscriber-div">
-        <input class="subscriber-input" placeholder="Email Address">
+        <div id="subscribe-container">
+          <input class="subscriber-input" placeholder="Email Address">
+          <p id="email-notice">Thank you for subscribing!</p>
+        </div>
         <button class="subscribe">SUBSCRIBE</button>
       </div>
       <div class="social-div">
@@ -86,7 +85,9 @@
     </section>
   </div>
   <script type="module" src="../utils/scroll.js"></script>
-  <script type="module" src="../utils/admin.js"></script>
+  <script type="module" src="../utils/indexAdmin.js"></script>
+  <script type="module" src="../utils/indexPublic.js"></script>
+  <script type="module" src="../utils/common.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

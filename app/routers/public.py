@@ -29,6 +29,19 @@ router = APIRouter(
 
 # ------------------------------------------------------------------------------------------------
 
+# Get countries, which allows dynamic rendering of countries list in portfolio
+
+@router.get('/countries')
+def get_countries(db: Session = Depends(get_db)):
+
+    countries = db.query(models.Image.country).distinct().all()
+
+    unique_countries = [country[0] for country in countries]
+
+    return unique_countries
+
+# ------------------------------------------------------------------------------------------------
+
 # Returns all posts matching a location
 @router.get('/{location}', response_model=List[schemas.ImageCreate])
 def get_images(location: str, db: Session = Depends(get_db),
