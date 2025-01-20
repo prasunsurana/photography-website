@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Me</title>
+
+  <link rel="stylesheet" href="../styles/header.css">
+  <link rel="stylesheet" href="../styles/socials.css">
+  <link rel="stylesheet" href="../styles/contact.css">
+
+</head>
+
+<body>
+  <section class="intro-section">
+    <label id="login-label"><a id="login-button"></a></label>
+    <nav class="navbar" data-scroll data-scroll-speed="2">
+      <div class="logo-div"><a class="logo" href="#">PRASUN SURANA</a></div>
+      <hr class="separator">
+      <div class="nav-list-div">
+        <ul class="nav-list">
+          <li><a class="nav-link" href="index.html">HOME</a></li>
+          <li><a class="nav-link" href="index.html#about-section">ABOUT</a></li>
+          <li>
+            <a id="portfolio-dropdown" class="nav-link" href="#">PORTFOLIO</a>
+            <ul class="dropdown"></ul>
+          </li>
+          <li><a class="nav-link" href="contact.html">CONTACT</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div id="contact-form-container">
+      <form action="https://api.web3forms.com/submit" method="POST" id="contact-form">
+        <input type="hidden" name="access_key" value="12d1d217-48c9-4bee-a1ed-58759a5211e2">
+        <div id="name-container">
+          <div id="firstname-container" class="container">
+            <label class="input-label">First Name</label>
+            <input id="firstname-input" class="input" name="firstname-input" placeholder="John" autocomplete="off">
+          </div>
+          <div id="lastname-container" class="container">
+            <label class="input-label">Last Name</label>
+            <input id="lastname-input" class="input" name="lastname-input" placeholder="Doe" autocomplete="off">
+          </div>
+        </div>
+        <div id="email-container" class="container">
+          <label class="input-label">Email Address</label>
+          <input id="email-input" class="input" name="email-input" placeholder="john.doe@gmail.com" autocomplete="off">
+        </div>
+        <div id="subject-container" class="container">
+          <label class="input-label">Subject</label>
+          <input id="subject-input" class="input" name="subject-input" placeholder="Subject" autocomplete="off">
+        </div>
+        <div id="message-container" class="container">
+          <label class="input-label">Message</label>
+          <textarea id="message-input" class="input" name="message-input" placeholder="Enter Message" rows="5" cols="50"
+            autocomplete="off"></textarea>
+        </div>
+        <button id="submit" type="submit">Submit</button>
+      </form>
+    </div>
+  </section>
+  <section class="contact-section">
+    <div class="contact-heading-div">
+      <h1 class="contact-heading">Keep up to date with new albums</h1>
+    </div>
+    <div class="subscriber-div">
+      <div id="subscribe-container">
+        <input class="subscriber-input" placeholder="Email Address">
+        <p id="email-notice">Thank you for subscribing!</p>
+      </div>
+      <button class="subscribe">SUBSCRIBE</button>
+    </div>
+    <div class="social-div">
+      <h2 class="follow-heading">Follow</h2>
+      <hr class="follow-separator">
+      <div class="social-container-row">
+        <a class="social-links" href="https://www.instagram.com/prasunsurana/" target="_blank">
+          <ion-icon class="social-logo insta" name="logo-instagram"></ion-icon>
+        </a>
+        <a class="social-links" href="https://github.com/prasunsurana" target="_blank">
+          <ion-icon class="social-logo github" name="logo-github"></ion-icon>
+        </a>
+        <a class="social-links" href="/frontend/contact.html" target="_self">
+          <ion-icon class="social-logo mail" name="mail-outline"></ion-icon>
+        </a>
+      </div>
+    </div>
+  </section>
+  <script type="module" src="../utils/common.js"></script>
+  <script type="module" src="../utils/indexPublic.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

@@ -10,11 +10,10 @@
   <link rel="stylesheet" href="../styles/about.css">
   <link rel="stylesheet" href="../styles/socials.css">
   <link rel="stylesheet" href="../styles/login.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
 </head>
 
 <body>
-  <div class="main-content" data-scroll-container>
+  <div class="main-content">
     <div id="overlay" class="is-hidden"></div>
     <div id="login-modal" class="is-hidden">
       <h1 id="modal-header">Login</h1>
@@ -37,7 +36,7 @@
     </div>
     <section class="intro-section">
       <label id="login-label"><a id="login-button"></a></label>
-      <nav class="navbar" data-scroll data-scroll-speed="2">
+      <nav class="navbar">
         <div class="logo-div"><a class="logo" href="#">PRASUN SURANA</a></div>
         <hr class="separator">
         <div class="nav-list-div">
@@ -54,7 +53,19 @@
       </nav>
     </section>
     <section class="about-section" id="about-section">
-      <img class="about-pic" src="/photos/DSC_0550.jpg" data-scroll data-scroll-speed="3">
+      <div id="about-section-container">
+        <div id="about-paragraph-container">
+          <p id="about-paragraph">I am an amateur photographer based in Singapore. Although I shoot both in
+            colour and black-and-white, stylistically I am attracted more towards monochrome photography
+            and how light and shadows can be used to dramatic effect, such as in the works of Fan Ho, Sebastião
+            Salgado and Jan Grarup. While I live in a big city, I am drawn towards rural places, and I hope
+            my photography in the future can reflect stories from these places and their people.
+          </p>
+        </div>
+        <!-- <div id="about-pic-div">
+          <img class="about-pic" src="/photos/DSC_0550.jpg">
+        </div> -->
+      </div>
     </section>
     <section class="contact-section">
       <div class="contact-heading-div">
@@ -77,20 +88,18 @@
           <a class="social-links" href="https://github.com/prasunsurana" target="_blank">
             <ion-icon class="social-logo github" name="logo-github"></ion-icon>
           </a>
-          <a class="social-links" href="/frontend/contactform.html" target="_self">
+          <a class="social-links" href="/frontend/contact.html" target="_self">
             <ion-icon class="social-logo mail" name="mail-outline"></ion-icon>
           </a>
         </div>
       </div>
     </section>
   </div>
-  <script type="module" src="../utils/scroll.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <script type="module" src="../utils/indexAdmin.js"></script>
   <script type="module" src="../utils/indexPublic.js"></script>
   <script type="module" src="../utils/common.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>

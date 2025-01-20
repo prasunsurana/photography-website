@@ -71,7 +71,7 @@ def create_subscriber(email: str, db: Session = Depends(database.get_db)):
 
 # ------------------------------------------------------------------------------------------------
 
-@router.get('/notify', response_model = List[schemas.Subscriber])
+@router.post('/notify', response_model = List[schemas.Subscriber])
 def notify_subscribers(country: str, db: Session = Depends(database.get_db)):
 
   subscribers = db.query(models.Subscribers).all()

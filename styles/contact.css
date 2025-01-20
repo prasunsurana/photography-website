@@ -1,0 +1,99 @@
+.intro-section {
+  background-image: none;
+  background-color: #f0eded;
+  height: 800px;
+}
+
+.navbar {
+  position: absolute;
+  top: 0;
+}
+
+#contact-form-container {
+  margin: auto;
+  min-width: 500px;
+  margin-top: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+#name-container {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.input-label {
+  font-family: "AileronLight";
+  font-size: 9px;
+  letter-spacing: 1.5px;
+}
+
+.input {
+  font-family: "AileronLight";
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  border: none;
+  background-color: transparent;
+  border-bottom: 2px solid black;
+  outline: none;
+}
+
+.input::placeholder {
+  opacity: 0.5;
+}
+
+#submit {
+  font-family: "AileronLight";
+  font-size: 11px;
+  height: 43px;
+  width: 130px;
+  border: 3px solid black;
+  cursor: pointer;
+  letter-spacing: 1.5px;
+  margin-top: 8px;
+  display: block;
+  margin: auto;
+}
+
+#submit:hover {
+  background-color: black;
+  color: white;
+  transition: 0.5s;
+}
+
+#contact-form {
+  max-width: 600px;
+}
+
+.contact-section {
+  background-color: black;
+  color: #f0eded;
+}
+
+.subscribe {
+  background-color: transparent;
+  border: 3px solid #f0eded;
+  color: #f0eded;
+}
+
+.subscribe:hover {
+  background-color: #f0eded;
+  color: black;
+}
+
+.follow-separator {
+  background-color: #f0eded;
+}
+
+.social-logo {
+  color: #f0eded;
+}

@@ -42,6 +42,7 @@ export function imageFormSubmission() {
 
       if (response.ok) {
         const result = await response.json();
+        window.location.reload();
         console.log('Upload successful: ', result);
       } else {
         console.error('Upload failed: ', response.statusText);
@@ -96,10 +97,13 @@ if (window.location.pathname.endsWith('portfolio.html')) {
 if (window.location.pathname.endsWith('portfolio.html')) {
   document.addEventListener('DOMContentLoaded', () => {
     const uploadButton = document.getElementById('upload-label');
+    const notifyButton = document.getElementById('notify-button');
     if (document.cookie) {
       uploadButton.style.display = "block";
+      notifyButton.style.display = "block";
     } else {
       uploadButton.style.display = "none";
+      notifyButton.style.display = "none";
     }
   });
 }
@@ -119,6 +123,27 @@ export function retrieveCookie() {
     }
   }
 }
+
+// ------------------------------------------------------------------------------------------------
+
+// Notify all subscribers about new album
+
+const notifyButton = document.getElementById('notify-button');
+
+notifyButton.addEventListener('click', async () => {
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const country = urlParams.get('country')
+  console.log(country)
+
+  try {
+    const response = await fetch(`http://127.0.0.1:8000/notify?country=${country}`, {
+      method: "POST"
+    });
+  } catch (error) {
+    console.error('Error in notifying subscribers: ', error)
+  }
+});
 
 // ------------------------------------------------------------------------------------------------
 

@@ -1,16 +1,39 @@
-.about-section {
+#about-section-container {
   position: relative;
-  height: 550px;
+  height: 600px;
   margin: 0;
   padding: 0;
-  overflow: hidden;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
+}
+
+#about-pic-div {
+  height: 100%;
+  width: auto;
+  object-fit: cover;
+  border-radius: 3px;
+  display: block;
 }
 
 .about-pic {
-  height: 550px;
+  height: 100%;
+  width: auto;
   object-fit: cover;
   border-radius: 3px;
+  display: block;
+}
+
+#about-paragraph-container {
+  position: absolute;
+  width: 80%;
+}
+
+#about-paragraph {
+  font-family: "AileronLight";
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: white;
+  line-height: 40px;
+  text-align: justify;
 }
